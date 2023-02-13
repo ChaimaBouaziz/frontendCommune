@@ -1,0 +1,53 @@
+<mat-toolbar>
+  <div fxHide.gt-xs>
+    <button mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <div>
+  <b>Liste Sous Catégorie</b>  
+  </div>
+  <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+    <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+
+      <button class="btn btn-sm btn-success text-white pull-right" (click)="addScategorie()">
+        nouveau </button>
+
+        <button class="btn" (click)="openPDF()" style="font-size:20px"><i class="fa fa-download"></i>PDF</button>
+    </ul>
+  </div>
+</mat-toolbar>
+<div class="pricing-header mx-auto">
+  <div class="table-responsive">
+    <table class="table table-bordered table-responsive-sm table-responsive-md
+   table-responsive-lg" id="htmlData">
+      <thead>
+        <tr>
+          <th scope="col">idCat</th>
+          <th scope="col"> Catég</th>
+          <th scope="col">LibScat </th>
+          <th class="text-center" scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+
+
+        <tr *ngFor="let item of crudApi.listData  | paginate:{itemsPerPage: 6 ,currentPage: p}">
+
+          <td>{{item.idScat}}</td>
+          <!-- <td>{{item.parentCategorie.idCat}}</td>-->
+          <td>{{getValue(item.parentCategorie) }}</td>
+          <td>{{item.libScat}}</td>
+
+
+          <td><button class="btn btn-warning" (click)="selectData(item)">
+              Modifier</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-danger" (click)="removeData(item.idScat)">
+              Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

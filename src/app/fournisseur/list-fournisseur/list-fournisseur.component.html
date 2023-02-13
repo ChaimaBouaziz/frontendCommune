@@ -1,0 +1,54 @@
+<mat-toolbar >
+  <div fxHide.gt-xs>
+      <button mat-icon-button >
+          <mat-icon>menu</mat-icon>
+      </button>
+     
+  </div>
+  <div *ngIf="isLoggedIn || showAdminBoard">
+  <b> Liste Fournisseur</b> 
+  </div>
+  <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+      <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+        
+              <button class="btn btn-sm btn-success text-white pull-right" (click)="addfournisseur()">
+nouveau </button>
+   
+<button class="btn" (click)="openPDF()" style="font-size:20px"><i class="fa fa-download"></i>PDF</button>
+      </ul>
+  </div>
+</mat-toolbar>
+<div class="pricing-header mx-auto">
+ <div class="table-responsive">
+  <table class="table table-bordered table-responsive-sm table-responsive-md
+ table-responsive-lg" id="htmlData">
+  <thead>
+  <tr>
+  <th scope="col">id</th>
+  <th scope="col">Nom </th>
+  <th scope="col">adresse</th>
+  <th scope="col">contact</th>
+
+  <th class="text-center" scope="col">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+
+
+  <tr *ngFor="let item of crudApi.listData  | paginate:{itemsPerPage: 6 ,currentPage: p}">
+  <td>{{item.id}}</td>
+  <td>{{item.nom}}</td>
+  <td>{{item.adresse}}</td>
+  <td>{{item.contact}}</td>
+
+  
+  <td><button class="btn btn-warning"  (click) = "selectData(item)">
+   Modifier</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <button class="btn btn-danger" (click) = "removeData(item.id)">
+  Supprimer</button></td>
+     </tr>
+       </tbody>
+       </table>
+       </div>
+       <pagination-controls (pageChange)="p = $event"></pagination-controls>
+     </div>

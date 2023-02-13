@@ -1,0 +1,63 @@
+<div class="topnav">
+  <!-- <img class="logo" src="assets/img/monatsir-removebg-preview.png" /> -->
+  <a class="active" routerLink="/home">home</a>
+  <a routerLink="/home/categories">Catégorie</a>
+  <a routerLink="/home/scategories">Scategorie</a>
+  <a routerLink="/home/articles">Article</a>
+  <a routerLink="/home/employes">Employe</a>
+  <a routerLink="/home/fournisseurs">Fournisseur</a>
+  <a routerLink="/home/departements">Departement</a>
+  <a routerLink="/home/entres">Entre</a>
+  <a routerLink="/home/sorties">Sortie</a>
+  <a routerLink="/home/inventaires">inventaires</a>
+  <div class="topnav-right">
+      <a href="#search"><span class="glyphicon glyphicon-user"></span>{{ username }}</a>
+      <a href (click)="logout()">Déconnexion</a>
+  </div>
+</div>
+
+<!-- Navbar -->
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+      <a class="navbar-brand me-2">
+          <img class="logo" src="assets/img/monatsir-removebg-preview.png" />
+      </a>
+      <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarButtonsExample">
+          
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a routerLink="/acceuil/reclamations" class="nav-link">
+                      <p>Reclamations</p>
+                  </a>
+              </li>
+          </ul>
+          
+          <div class="d-flex align-items-center">
+              <button type="button" class="btn btn-link px-3 me-2">
+                  {{ username }}
+              </button>
+              
+              <a href class="nav-link" (click)="logout()">LogOut</a>
+              
+          </div>
+      </div>
+      
+  </div>
+  
+</nav> -->
+<!-- Navbar -->
+<!--main content start-->
+<section id="main-content">
+  <section class="wrapper">
+      <div class="row"></div>
+      
+      <div class="container-fluid">
+      <router-outlet></router-outlet>
+
+      </div><!-- /.container-fluid -->
+  </section>
+</section>
+<!--main content end-->

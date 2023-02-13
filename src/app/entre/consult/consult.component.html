@@ -1,0 +1,60 @@
+
+<mat-toolbar>
+    <div fxHide.gt-xs>
+      <button mat-icon-button>
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <div>
+      <h1><b>Consultation</b></h1>
+    </div>
+  
+  </mat-toolbar>
+  <form [formGroup]="this.service.formData" (ngSubmit)="onSubmit()">
+    <input type="hidden" class="form-control" formControlName="nomF" id="nomF" readonly>
+    <div class="form-group row col-md-12">
+      <div class="form-group col-md-6">
+        <label><strong> numero Operation : </strong></label>
+        <input type="text" class="form-control" formControlName="numeroOperation" id="numeroOperation" readonly>
+      </div>
+      <div class="form-group col-md-6">
+        <label><strong> refOperation : </strong></label>
+        <input type="text" class="form-control" formControlName="refOperation" id="refOperation" readonly>
+      </div>
+      <div class="col-md-6 form-group">
+        <label>Date Operation</label>
+        <input type="date" class="form-control" formControlName="dateOperation" id="dateOperation" readonly>
+      </div>
+      <div class="col-md-6 form-group" >
+        <label>Fournisseur</label>
+        <input type="text" class="form-control" formControlName="idF" id="idF"  readonly>
+       
+      </div>
+  
+    </div>
+    <table class="table table-borderless">
+      <thead class="thead-light">
+        <th>Article</th>
+        <th>Quantite</th>
+        
+      </thead>
+      <tbody>
+        <tr *ngIf="service.list.length==0" [class.text-danger]="!isValid && service.list.length ==0">
+          <td class="font-italic text-center" colspan="5">
+            Aucune entre sélectionnée ...
+          </td>
+        </tr>
+        <tr *ngFor="let item of service.list;let i=index;">
+          <td readonly>{{item.idArticle}}</td>
+          <td readonly>{{item.qte}}</td>
+         
+        </tr>
+      </tbody>
+    </table>
+    
+  
+    
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" routerLink="/home/entres"> Retour</button>
+    </div>
+  </form>

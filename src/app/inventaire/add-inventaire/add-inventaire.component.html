@@ -1,0 +1,62 @@
+<mat-toolbar >
+  <div fxHide.gt-xs>
+      <button mat-icon-button >
+          <mat-icon>menu</mat-icon>
+      </button>
+  </div>
+  <div>
+  <h1><b>Ajouter Inventaire</b> </h1> 
+  </div>
+  
+</mat-toolbar>
+<form [formGroup]="this.service.formData" (ngSubmit)="onSubmit()">
+
+<div class="form-group row col-md-12">
+<div class="form-group col-md-6">
+    <label><strong> numero Inventaire : </strong></label>
+    <input  type="text"  class="form-control" formControlName="numInventaire" id="numInventaire" >
+</div>  
+
+<div class="col-md-6 form-group">
+      <label>Date Inventaire</label>
+    <input  type="date"  class="form-control" formControlName="dateInventaire"  id="dateInventaire">
+</div>
+
+
+</div>
+<table class="table table-borderless">
+  <thead class="thead-light">
+    <th>Article</th>
+    <th>Quantite stock</th>
+    <th>Quantite invent</th>
+    <th>
+      <a class="btn btn-sm btn-outline-success " (click)="AddData(null,1)">
+          <i class="fa fa-plus"></i>nouveau </a>
+    </th>
+  </thead>
+  <tbody>
+      <tr *ngIf="service.list.length==0" 
+       [class.text-danger]="!isValid && service.list.length ==0">
+          <td class="font-italic text-center" colspan="5">
+            Aucune inventaire sélectionnée ...
+          </td>
+        </tr>
+    <tr *ngFor="let item of service.list;let i=index;">  
+    <td>{{item.libelle}}</td>
+    <td>{{item.qteStock}}</td>
+    <td>{{item.qteInvent}}</td>
+    <td>
+        <a class="btn btn-sm btn-info text-white" (click)="AddData(i,1)">modifier
+            <i class="fa fa-pencil"></i></a>
+        <a class="btn btn-sm btn-danger text-white ml-1" (click)="onDelete(item,item.id,i)">supprimer
+            <i class="fa fa-trash"></i></a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<div class="form-group">
+  <button type="submit" class="btn btn-primary"><i class="fa fa-database"></i> enregistrer</button>
+
+</div>
+</form>

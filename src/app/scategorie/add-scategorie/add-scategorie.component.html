@@ -1,0 +1,39 @@
+<mat-toolbar>
+  <div fxHide.gt-xs>
+    <button mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <div>
+   <b> Ajouter Sous categorie</b>
+  </div>
+</mat-toolbar>
+<div class="col-md-12 ">
+
+  <form [formGroup]="this.crudApi.dataForm" (ngSubmit)="onSubmit()">
+
+
+    <div class="form-group">
+      <label>libelle Catégorie </label>
+      <select class="form-control" formControlName="idCat" id="idCat">
+        <option value="0">-Select-</option>
+        <option *ngFor="let item of CategorieList" value="{{item.idCat}}">{{item.libCat}}</option>
+      </select>
+
+    </div>
+    <div class="form-group">
+      <label>Libelle</label>
+      <input type="text" class="form-control" formControlName="libScat" id="libScat">
+
+    </div>
+
+    <div class="form-group">
+
+      <button type="submit" class="btn btn-primary"><i class="fa fa-database"></i> enregistrer </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" class="btn btn-outline-secondary" [mat-dialog-close]><i class="fa fa-close"></i> annuler
+      </button>
+
+
+    </div>
+  </form>
+</div>

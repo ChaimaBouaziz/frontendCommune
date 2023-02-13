@@ -1,0 +1,52 @@
+<mat-toolbar>
+    <div fxHide.gt-xs>
+        <button mat-icon-button>
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div>
+    <div>
+        Liste Entre
+    </div>
+
+</mat-toolbar>
+<input type="text" [(ngModel)]="SearchText" class="form-control bg-light border-0 small" placeholder="Recherche..."
+    aria-label="Search" aria-describedby="basic-addon2">
+<table class="table table-hover">
+    <thead class="thead-light">
+        <th>id</th>
+        <th>Date commande</th>
+        <th>Fournisseur</th>
+
+
+        <th>
+            <a class="btn btn-outline-success" routerLink="/entre"><i class="fa fa-plus-square"></i>Ajouter</a>
+        </th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let entre of entreListe  | paginate:{itemsPerPage: 6 ,currentPage: p}">
+            <td>{{entre.id}}</td>
+            <td (click)="openForEdit(entre.id)">{{entre.dateOperation| date:'dd/MM/yyyy'}}</td>
+
+            <td>{{entre.nomF}}</td>
+
+
+
+            <td>
+                <a class="btn text-danger" (click)="onCommandeDelete(entre.id)"><i class="fa fa-trash fa-lg"></i> </a>
+                <a class="btn text-danger" (click)="selectCommande(entre)"><i class="fa fa-pencil fa-lg"></i> </a>
+
+            </td>
+        </tr>
+        <div class="row">
+            <div class="col-sm-12 col-md-5">
+                <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite"></div>
+            </div>
+            <div class="col-sm-12 col-md-7">
+                <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+                    <ul class="pagination"></ul>
+                </div>
+            </div>
+        </div>
+    </tbody>
+</table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

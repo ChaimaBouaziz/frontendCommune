@@ -1,0 +1,33 @@
+<h1 class="dislay-4"><b>Ligne Inventaire</b></h1>
+<hr>
+<form [formGroup]="this.formData"  (ngSubmit)="onSubmit()">
+ 
+   
+ 
+    <div class="form-group">
+        <label>Article </label> 
+        <select  class="form-control" formControlName="libelle" id="libelle" (change)="onLibelleSelected()" >
+            <option value="0">-Select-</option>
+            <option *ngFor="let item of articleList" value="{{item.libelle}}">{{item.libelle}}</option>
+       </select>
+    </div>
+<div  class="form-group">
+    <label>Quantité  Article </label>
+    <div class="input-group">
+        <input type="number" name="qteStock"  class="form-control" formControlName="qteStock" id="qteStock" readonly>
+    </div>
+</div>
+    <div class="form-group">
+       <label>Quantité  Invent </label>
+      <div class="input-group">
+        <input type="number" name="qteInvent"  class="form-control" formControlName="qteInvent" id="qteInvent"
+        [class.is-invalid]="!isValid && formData.value.qte==0">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary"><i class="fa fa-database"></i> enregistrer </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" class="btn btn-outline-secondary" [mat-dialog-close]><i class="fa fa-close"></i> annuler </button>
+    </div>
+  
+</form>
